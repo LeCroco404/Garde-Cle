@@ -7,6 +7,7 @@
  */
 import { ANSWER_OPTIONS, QUESTIONS, THEMES } from "./data/questions.js";
 import { computeResults } from "./scoring.js";
+import { renderResults } from "./results.js";
 
 /* ---------- 1. État de l'application ---------- */
 const state = {
@@ -37,7 +38,6 @@ const el = {
   progressionTheme: $("progression-theme"),
   progressionBarre: $("progression-barre"),
   titreResultats: $("titre-resultats"),
-  scoreGlobal: $("score-global"),
   btnRecommencer: $("btn-recommencer"),
 };
 
@@ -103,14 +103,9 @@ function renderQuestion() {
   el.titre.focus();
 }
 
-/* ---------- 5. Résultats (affichage provisoire) ----------
-   Version minimale pour vérifier le calcul. L'étape 4 la remplacera
-   par la vraie page de résultats (results.js). */
+/* ---------- 5. Résultats ---------- */
 function showResults() {
-  const r = computeResults(state.answers);
-  el.scoreGlobal.textContent =
-    `Score : ${r.score} / 100. Niveau : ${r.level.label}.` +
-    (r.capped ? " (Niveau plafonné : au moins une faille critique.)" : "");
+  renderResults(computeResults(state.answers));
   showSection("resultats", el.titreResultats);
 }
 

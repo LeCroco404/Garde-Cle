@@ -25,6 +25,12 @@
   --erreur: #a3262a;
   --focus: #1d4ed8;
 
+  /* Couleurs des niveaux : texte foncé sur fond clair (contraste AA). */
+  --critique: #a3262a;   --critique-fond: #fbeaea;
+  --ameliorer: #9a4500;  --ameliorer-fond: #fdf0e4;
+  --correct: #5b6300;    --correct-fond: #f2f4dc;
+  --bon: #1d6b3a;        --bon-fond: #e3f3e8;
+
   --rayon: 0.75rem;
   --espace: 1rem;
   --largeur-max: 44rem;
@@ -49,6 +55,11 @@
     --alerte-bord: #f0a060;
     --erreur: #ff8f8f;
     --focus: #93b4ff;
+
+    --critique: #ff9a9a;   --critique-fond: #3a1d1e;
+    --ameliorer: #f5b27a;  --ameliorer-fond: #35251a;
+    --correct: #d6dc7a;    --correct-fond: #2c2e18;
+    --bon: #8fd9a8;        --bon-fond: #1a3222;
   }
 }
 
@@ -391,7 +402,125 @@ progress::-moz-progress-bar { background: var(--primaire); border-radius: 999px;
 }
 .nav-question .btn { width: 100%; }
 
-/* ---------- 8. Résultats (structure ; mise en forme à l'étape 4) ---------- */
+/* ---------- 8. Résultats ---------- */
+
+/* 8.1 Score global */
+.score-global { margin-bottom: 2rem; }
+
+.score-valeur { margin-bottom: 0.5rem; line-height: 1; }
+.score-nombre { font-size: 3.5rem; font-weight: 700; }
+.score-sur { font-size: 1.5rem; color: var(--texte-doux); }
+
+/* Chaque niveau définit sa couleur (--niv) et son fond (--niv-fond),
+   réutilisés par le badge et par les barres des thèmes. */
+.niveau-critique  { --niv: var(--critique);  --niv-fond: var(--critique-fond); }
+.niveau-ameliorer { --niv: var(--ameliorer); --niv-fond: var(--ameliorer-fond); }
+.niveau-correct   { --niv: var(--correct);   --niv-fond: var(--correct-fond); }
+.niveau-bon       { --niv: var(--bon);       --niv-fond: var(--bon-fond); }
+
+.niveau-badge {
+  display: inline-block;
+  padding: 0.3rem 0.9rem;
+  border: 2px solid var(--niv);
+  border-radius: 999px;
+  background: var(--niv-fond);
+  color: var(--niv);
+  font-weight: 700;
+}
+
+.niveau-message { font-size: 1.1rem; }
+
+.niveau-plafond {
+  padding: 0.75rem 1rem;
+  border-left: 4px solid var(--ameliorer);
+  background: var(--ameliorer-fond);
+  border-radius: 0 var(--rayon) var(--rayon) 0;
+}
+
+/* 8.2 Actions prioritaires : numérotation en pastilles */
+.actions-prioritaires {
+  list-style: none;
+  padding: 0;
+  margin-bottom: 2rem;
+  counter-reset: action;
+}
+
+.action {
+  position: relative;
+  padding: 1rem 1rem 0.25rem 3.5rem;
+  margin-bottom: 1rem;
+  border: 1px solid var(--bordure);
+  border-radius: var(--rayon);
+  counter-increment: action;
+}
+.action::before {
+  content: counter(action);
+  position: absolute;
+  left: 1rem;
+  top: 1rem;
+  width: 1.8rem;
+  height: 1.8rem;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  background: var(--primaire);
+  color: var(--sur-primaire);
+  font-weight: 700;
+  font-size: 0.95rem;
+}
+.action-vide { padding: 1rem; }
+.action-vide::before { content: none; }
+
+.action-titre { font-size: 1.1rem; margin-bottom: 0.25rem; }
+.action-reponse { color: var(--texte-doux); font-size: 0.95rem; margin-bottom: 0.5rem; }
+.action-nsp {
+  padding: 0.5rem 0.75rem;
+  background: var(--primaire-leger);
+  border-radius: var(--rayon);
+}
+.action-sources { font-size: 0.9rem; color: var(--texte-doux); }
+
+/* 8.3 Score par thème */
+.scores-themes {
+  list-style: none;
+  padding: 0;
+  margin-bottom: 2rem;
+}
+.theme { margin-bottom: 1rem; }
+
+.theme-ligne {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 0.3rem;
+}
+.theme-score { font-weight: 600; white-space: nowrap; }
+
+.theme-piste {
+  display: block;
+  height: 0.6rem;
+  border-radius: 999px;
+  background: var(--bordure);
+  overflow: hidden;
+}
+.theme-barre {
+  display: block;
+  height: 100%;
+  width: var(--valeur, 0%);
+  background: var(--niv);
+  border-radius: 999px;
+}
+
+/* 8.4 Encart d'aide */
+.encart-info {
+  padding: 1rem;
+  margin-bottom: 1rem;
+  background: var(--primaire-leger);
+  border-radius: var(--rayon);
+}
+.encart-info h2 { font-size: 1.05rem; margin-bottom: 0.4rem; }
+.encart-info p { margin: 0; }
+
 .actions-resultats {
   display: flex;
   flex-direction: column;

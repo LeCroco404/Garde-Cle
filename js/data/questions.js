@@ -30,10 +30,22 @@ export const UNKNOWN_MESSAGE =
 /* ------------------------------------------------------------------ */
 // "min" = score minimal pour atteindre le niveau. Ordre croissant.
 export const LEVELS = [
-  { id: "critique", label: "Critique", min: 0 },
-  { id: "ameliorer", label: "À améliorer", min: 40 },
-  { id: "correct", label: "Correct", min: 60 },
-  { id: "bon", label: "Bon", min: 80 },
+  {
+    id: "critique", label: "Critique", min: 0,
+    message: "Plusieurs protections essentielles manquent. Pas de panique : avancez une action à la fois, en commençant par la première ci-dessous.",
+  },
+  {
+    id: "ameliorer", label: "À améliorer", min: 40,
+    message: "Les bases sont en partie là, mais des failles importantes restent ouvertes. Les actions ci-dessous sont à traiter en priorité.",
+  },
+  {
+    id: "correct", label: "Correct", min: 60,
+    message: "Votre structure a de bonnes bases. Quelques points restent à renforcer.",
+  },
+  {
+    id: "bon", label: "Bon", min: 80,
+    message: "Votre structure applique l'essentiel des bonnes pratiques évaluées ici. Gardez ces habitudes et refaites le diagnostic de temps en temps.",
+  },
 ];
 
 /* ------------------------------------------------------------------ */
