@@ -1,0 +1,9 @@
+# Fichiers système et d'éditeur, qui peuvent révéler des chemins locaux
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
+# Dossiers générés ou locaux
+node_modules/
+*.log
