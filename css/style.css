@@ -127,6 +127,9 @@ a:hover { color: var(--primaire-survol); }
 }
 .skip-link:focus { top: var(--espace); color: var(--sur-primaire); }
 
+/* Titres qui reçoivent le focus par script (tabindex="-1") : pas de contour. */
+[tabindex="-1"]:focus { outline: none; }
+
 /* Respecte le réglage système "réduire les animations". */
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after {

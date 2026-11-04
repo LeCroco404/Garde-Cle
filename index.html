@@ -18,6 +18,8 @@
   <meta name="theme-color" content="#0f5c55">
   <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
   <link rel="stylesheet" href="css/style.css">
+  <!-- type="module" : permet import/export ; le script s'exécute après le chargement du HTML. -->
+  <script type="module" src="js/app.js"></script>
 </head>
 <body>
   <!-- Lien d'évitement : premier élément atteint au clavier, il permet de
@@ -83,7 +85,7 @@
 
       <div class="progression">
         <p id="progression-texte" class="progression-texte">
-          <span>Question <span id="progression-num">1</span> sur 15</span>
+          <span>Question <span id="progression-num">1</span> sur <span id="progression-total">15</span></span>
           <span class="progression-theme" id="progression-theme">Sauvegardes</span>
         </p>
         <progress id="progression-barre" max="15" value="1" aria-labelledby="progression-texte"></progress>
