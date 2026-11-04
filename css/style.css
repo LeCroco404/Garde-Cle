@@ -528,7 +528,54 @@ progress::-moz-progress-bar { background: var(--primaire); border-radius: 999px;
   margin-top: 2rem;
 }
 
-/* ---------- 9. Écrans plus larges ---------- */
+/* ---------- 9. Pages de contenu (En cas d'attaque, À propos) ---------- */
+.titre-section { margin-top: 2rem; }
+
+/* Étapes numérotées en pastilles, comme les actions prioritaires. */
+.liste-etapes {
+  list-style: none;
+  padding: 0;
+  counter-reset: etape;
+}
+.liste-etapes > li {
+  position: relative;
+  padding-left: 3rem;
+  margin-bottom: 1rem;
+  counter-increment: etape;
+}
+.liste-etapes > li::before {
+  content: counter(etape);
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 1.9rem;
+  height: 1.9rem;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  background: var(--primaire);
+  color: var(--sur-primaire);
+  font-weight: 700;
+}
+
+.contact {
+  padding: 1rem;
+  margin-bottom: 0.75rem;
+  border: 1px solid var(--bordure);
+  border-radius: var(--rayon);
+}
+.contact h3 { font-size: 1.05rem; margin-bottom: 0.25rem; }
+.contact p { margin: 0; }
+
+/* Lignes à compléter à la main après impression. */
+.a-completer dt { font-weight: 600; margin-top: 1rem; }
+.a-completer dd {
+  margin: 0;
+  min-height: 2rem;
+  border-bottom: 1px dashed var(--bordure-forte);
+}
+
+/* ---------- 10. Écrans plus larges ---------- */
 @media (min-width: 40em) {
   h1 { font-size: 2rem; }
 

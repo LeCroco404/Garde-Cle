@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="Content-Security-Policy"
+        content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; connect-src 'none'; form-action 'none'; base-uri 'none'; object-src 'none'">
+  <meta name="referrer" content="no-referrer">
+  <title>À propos · Garde-Clé</title>
+  <meta name="description" content="Méthode, sources, confidentialité et limites de l'autodiagnostic Garde-Clé.">
+  <meta name="theme-color" content="#0f5c55">
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/print.css" media="print">
+</head>
+<body>
+  <a class="skip-link" href="#contenu">Aller au contenu</a>
+
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="brand" href="index.html">
+        <svg class="brand-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+          <circle cx="8" cy="12" r="4"/>
+          <path d="M12 12h9M18 12v3M21 12v3"/>
+        </svg>
+        <span>Garde-Clé</span>
+      </a>
+      <nav aria-label="Navigation principale">
+        <ul class="nav-list">
+          <li><a href="index.html">Diagnostic</a></li>
+          <li><a href="en-cas-d-attaque.html">En cas d'attaque</a></li>
+          <li><a href="a-propos.html" aria-current="page">À propos</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main id="contenu" class="container" tabindex="-1">
+    <article class="panel">
+      <h1>À propos de Garde-Clé</h1>
+      <p class="lead">
+        Garde-Clé aide les petites structures sans service informatique (cabinets médicaux,
+        associations, TPE) à repérer en quelques minutes leurs failles les plus graves et à
+        savoir quoi corriger en premier.
+      </p>
+
+      <h2 class="titre-section">Méthode</h2>
+      <p>
+        Le diagnostic compte 15 questions réparties en 8 thèmes. Chaque question a un poids
+        selon la gravité du risque : 3 pour une faille qui peut à elle seule paralyser
+        l'activité, 2 pour un point important, 1 pour un point utile.
+      </p>
+      <p>
+        Une réponse « Oui » rapporte tous les points de la question, « En partie » la moitié,
+        « Non » et « Je ne sais pas » aucun : on ne peut pas compter sur une protection dont
+        on ignore l'existence. Le score sur 100 rapporte les points obtenus au total possible.
+      </p>
+      <p>
+        Le niveau dépend du score : critique (moins de 40), à améliorer (40 à 59), correct
+        (60 à 79), bon (80 et plus). Si une protection de poids 3 manque, le niveau ne peut
+        pas dépasser « à améliorer ». Les 5 actions prioritaires sont celles qui feraient
+        gagner le plus de points.
+      </p>
+      <p>Ces poids et ces seuils sont des choix de cet outil, pas des normes officielles.</p>
+
+      <h2 class="titre-section">Sources</h2>
+      <p>Chaque recommandation renvoie à sa source officielle :</p>
+      <ul class="imprime-url">
+        <li><a href="https://messervices.cyber.gouv.fr/guides/guide-dhygiene-informatique">ANSSI, Guide d'hygiène informatique</a></li>
+        <li><a href="https://www.cybermalveillance.gouv.fr/tous-nos-contenus/bonnes-pratiques/10-mesures-essentielles-assurer-securite-numerique">Cybermalveillance.gouv.fr, 10 mesures essentielles</a></li>
+        <li><a href="https://www.cybermalveillance.gouv.fr/medias/2023/09/5-recommandations-essentielles-pour-les-entreprises-2.pdf">Cybermalveillance.gouv.fr, 5 recommandations essentielles pour les entreprises (PDF)</a></li>
+        <li><a href="https://www.cybermalveillance.gouv.fr/tous-nos-contenus/fiches-reflexes/rancongiciels-ransomwares">Cybermalveillance.gouv.fr, fiche rançongiciel</a></li>
+        <li><a href="https://www.cnil.fr/fr/notifier-une-violation-de-donnees-personnelles">CNIL, Notifier une violation de données personnelles</a></li>
+      </ul>
+
+      <h2 class="titre-section">Confidentialité</h2>
+      <p>
+        Vos réponses ne quittent jamais votre navigateur. Il n'y a ni compte, ni cookie, ni
+        mesure d'audience, ni police ou script chargé depuis un autre site. La page interdit
+        techniquement au navigateur d'envoyer des données (règle de sécurité dite CSP).
+        Recharger ou fermer la page efface tout.
+      </p>
+      <p>
+        Comme tout site web, l'hébergeur peut enregistrer des journaux techniques de
+        connexion. Vos réponses n'y figurent jamais, puisqu'elles ne sont pas transmises.
+      </p>
+
+      <h2 class="titre-section">Limites</h2>
+      <p>
+        Ce diagnostic est indicatif. Il porte sur 15 points essentiels et ne remplace ni un
+        audit, ni l'accompagnement d'un professionnel. Garde-Clé est un outil indépendant,
+        non affilié à l'ANSSI, à Cybermalveillance.gouv.fr ni à la CNIL.
+      </p>
+
+      <h2 class="titre-section">Code source</h2>
+      <p class="imprime-url">
+        Le code est libre (licence MIT) et consultable sur
+        <a href="https://github.com/LeCroco404/Garde-Cle">GitHub</a>.
+      </p>
+    </article>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <p>Garde-Clé ne collecte aucune donnée : tout le calcul se fait dans votre navigateur.</p>
+    </div>
+  </footer>
+</body>
+</html>
