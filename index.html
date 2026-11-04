@@ -1,0 +1,163 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- Politique de sécurité du contenu (CSP) : le navigateur refuse tout
+       script, style ou connexion qui ne vient pas de ce site.
+       connect-src 'none' interdit toute requête réseau depuis le JavaScript :
+       c'est la garantie technique qu'aucune réponse ne peut être envoyée. -->
+  <meta http-equiv="Content-Security-Policy"
+        content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; connect-src 'none'; form-action 'none'; base-uri 'none'; object-src 'none'">
+  <!-- N'envoie pas l'adresse de la page aux sites des sources quand on clique un lien. -->
+  <meta name="referrer" content="no-referrer">
+
+  <title>Garde-Clé · Autodiagnostic cyber pour petites structures</title>
+  <meta name="description" content="Autodiagnostic gratuit et confidentiel de la sécurité informatique des cabinets, associations et petites entreprises : 15 questions, un score et les 5 actions prioritaires.">
+  <meta name="theme-color" content="#0f5c55">
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <!-- Lien d'évitement : premier élément atteint au clavier, il permet de
+       sauter directement au contenu sans traverser le menu. -->
+  <a class="skip-link" href="#contenu">Aller au contenu</a>
+
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="brand" href="index.html">
+        <svg class="brand-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+          <circle cx="8" cy="12" r="4"/>
+          <path d="M12 12h9M18 12v3M21 12v3"/>
+        </svg>
+        <span>Garde-Clé</span>
+      </a>
+      <nav aria-label="Navigation principale">
+        <ul class="nav-list">
+          <li><a href="index.html" aria-current="page">Diagnostic</a></li>
+          <li><a href="en-cas-d-attaque.html">En cas d'attaque</a></li>
+          <li><a href="a-propos.html">À propos</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- tabindex="-1" permet au JavaScript de déplacer le focus ici. -->
+  <main id="contenu" class="container" tabindex="-1">
+
+    <!-- ============ 1. Accueil ============ -->
+    <section id="accueil" class="panel" aria-labelledby="titre-accueil">
+      <h1 id="titre-accueil">Votre structure est-elle bien protégée&nbsp;?</h1>
+      <p class="lead">
+        En 10 minutes et 15 questions simples, faites le point sur la sécurité
+        informatique de votre cabinet, de votre association ou de votre petite
+        entreprise. Vous repartez avec les 5 actions à mener en priorité.
+      </p>
+
+      <ul class="promesses">
+        <li><strong>Sans jargon</strong> : des questions en langage courant.</li>
+        <li><strong>Fondé sur des sources officielles</strong> : ANSSI et Cybermalveillance.gouv.fr.</li>
+        <li><strong>Confidentiel</strong> : vos réponses restent sur votre appareil. Rien n'est envoyé ni enregistré.</li>
+      </ul>
+
+      <button type="button" id="btn-commencer" class="btn btn-primaire">Commencer le diagnostic</button>
+
+      <p class="note">
+        Pas besoin d'être informaticien. Si vous ne savez pas répondre,
+        choisissez « Je ne sais pas » : c'est une réponse utile.
+      </p>
+
+      <aside class="encart-alerte" aria-labelledby="titre-alerte">
+        <h2 id="titre-alerte">Vous subissez une attaque en ce moment&nbsp;?</h2>
+        <p>Inutile de faire le diagnostic maintenant : <a href="en-cas-d-attaque.html">consultez les premiers réflexes</a>.</p>
+      </aside>
+    </section>
+
+    <!-- ============ 2. Questionnaire ============
+         Masqué au départ. Le JavaScript (étape 3) affiche la section,
+         remplit la question et les réponses, et gère la navigation.
+         La question ci-dessous sert de modèle de structure. -->
+    <section id="questionnaire" class="panel" aria-labelledby="titre-questionnaire" hidden>
+      <h1 id="titre-questionnaire" class="visually-hidden">Questionnaire de diagnostic</h1>
+
+      <div class="progression">
+        <p id="progression-texte" class="progression-texte">
+          <span>Question <span id="progression-num">1</span> sur 15</span>
+          <span class="progression-theme" id="progression-theme">Sauvegardes</span>
+        </p>
+        <progress id="progression-barre" max="15" value="1" aria-labelledby="progression-texte"></progress>
+      </div>
+
+      <!-- novalidate : on gère nous-mêmes le message d'erreur, plus clair
+           que la bulle native du navigateur. -->
+      <form id="form-question" novalidate>
+        <!-- fieldset + legend : un lecteur d'écran annonce la question
+             avant chaque réponse, le groupe forme un seul ensemble. -->
+        <fieldset class="question" aria-describedby="question-aide">
+          <legend>
+            <h2 id="titre-question" class="question-texte" tabindex="-1">
+              Vos données importantes (dossiers patients, comptabilité, fichiers
+              d'adhérents) sont-elles sauvegardées automatiquement et régulièrement&nbsp;?
+            </h2>
+          </legend>
+          <p id="question-aide" class="question-aide" hidden></p>
+
+          <!-- Boutons radio natifs : flèches du clavier pour changer de
+               réponse, sans code supplémentaire. Le label entier est cliquable. -->
+          <div class="reponses" id="reponses">
+            <label class="reponse"><input type="radio" name="reponse" value="oui"><span>Oui</span></label>
+            <label class="reponse"><input type="radio" name="reponse" value="partiel"><span>En partie</span></label>
+            <label class="reponse"><input type="radio" name="reponse" value="non"><span>Non</span></label>
+            <label class="reponse"><input type="radio" name="reponse" value="nsp"><span>Je ne sais pas</span></label>
+          </div>
+        </fieldset>
+
+        <!-- role="alert" : le message est lu immédiatement quand il apparaît. -->
+        <p id="erreur-question" class="erreur" role="alert" hidden>Choisissez une réponse pour continuer.</p>
+
+        <div class="nav-question">
+          <button type="button" id="btn-precedent" class="btn btn-secondaire">Précédent</button>
+          <button type="submit" id="btn-suivant" class="btn btn-primaire">Suivant</button>
+        </div>
+      </form>
+
+      <p class="note">
+        Vos réponses restent uniquement dans cette page : si vous la rechargez,
+        elles sont effacées.
+      </p>
+    </section>
+
+    <!-- ============ 3. Résultats ============
+         Masqué au départ, rempli par le JavaScript (étape 4). -->
+    <section id="resultats" class="panel" aria-labelledby="titre-resultats" hidden>
+      <h1 id="titre-resultats" tabindex="-1">Vos résultats</h1>
+
+      <div id="score-global" class="score-global"></div>
+
+      <h2>Vos 5 actions prioritaires</h2>
+      <ol id="actions-prioritaires" class="actions-prioritaires"></ol>
+
+      <h2>Score par thème</h2>
+      <ul id="scores-themes" class="scores-themes"></ul>
+
+      <div class="actions-resultats">
+        <button type="button" id="btn-imprimer" class="btn btn-primaire">Imprimer ou enregistrer en PDF</button>
+        <button type="button" id="btn-recommencer" class="btn btn-secondaire">Recommencer</button>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <p>Garde-Clé ne collecte aucune donnée : tout le calcul se fait dans votre navigateur.</p>
+      <p>
+        Recommandations issues du
+        <a href="https://messervices.cyber.gouv.fr/guides/guide-dhygiene-informatique">guide d'hygiène informatique de l'ANSSI</a>
+        et de <a href="https://www.cybermalveillance.gouv.fr/">Cybermalveillance.gouv.fr</a>.
+      </p>
+      <p>Outil indépendant, non affilié à ces organismes. Il ne remplace pas l'accompagnement d'un professionnel.</p>
+    </div>
+  </footer>
+</body>
+</html>
