@@ -7,7 +7,7 @@ En une dizaine de minutes, l'utilisateur répond à 15 questions simples et obti
 score de maturité sur 100, un score par thème et les 5 actions à mener en priorité,
 expliquées sans jargon, chacune avec sa source officielle.
 
-**Site en ligne :** _lien à ajouter après la mise en ligne_
+**Site en ligne :** <https://garde-cle.netlify.app>
 
 ## Fonctionnalités
 
