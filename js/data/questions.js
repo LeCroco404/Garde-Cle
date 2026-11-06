@@ -23,7 +23,7 @@ export const ANSWER_OPTIONS = [
 
 // Message affiché avec la recommandation quand la réponse est "Je ne sais pas".
 export const UNKNOWN_MESSAGE =
-  "Pas sûr ? Posez la question à votre prestataire informatique, c'est le bon point de départ.";
+  "Pas sûr\u00A0? Posez la question à votre prestataire informatique, c'est le bon point de départ.";
 
 /* ------------------------------------------------------------------ */
 /* 2. Niveaux de maturité (score global sur 100)                       */
@@ -32,7 +32,7 @@ export const UNKNOWN_MESSAGE =
 export const LEVELS = [
   {
     id: "critique", label: "Critique", min: 0,
-    message: "Plusieurs protections essentielles manquent. Pas de panique : avancez une action à la fois, en commençant par la première ci-dessous.",
+    message: "Plusieurs protections essentielles manquent. Pas de panique\u00A0: avancez une action à la fois, en commençant par la première ci-dessous.",
   },
   {
     id: "ameliorer", label: "À améliorer", min: 40,
@@ -139,7 +139,7 @@ export const QUESTIONS = [
     id: "S1",
     theme: "sauvegardes",
     weight: 3,
-    text: "Vos données importantes (dossiers patients, comptabilité, fichiers d'adhérents) sont-elles sauvegardées automatiquement et régulièrement ?",
+    text: "Vos données importantes (dossiers patients, comptabilité, fichiers d'adhérents) sont-elles sauvegardées automatiquement et régulièrement\u00A0?",
     action: {
       title: "Mettre en place une sauvegarde automatique",
       why: "Programmez une sauvegarde automatique, à une fréquence adaptée au rythme auquel vos données changent. Sans sauvegarde, une panne, un vol ou un rançongiciel peut faire disparaître définitivement votre travail.",
@@ -153,7 +153,7 @@ export const QUESTIONS = [
     id: "S2",
     theme: "sauvegardes",
     weight: 3,
-    text: "Au moins une copie de vos sauvegardes est-elle gardée déconnectée (disque débranché après usage, copie hors ligne) ?",
+    text: "Au moins une copie de vos sauvegardes est-elle gardée déconnectée (disque débranché après usage, copie hors ligne)\u00A0?",
     action: {
       title: "Garder une copie de sauvegarde débranchée",
       why: "Gardez une copie débranchée du réseau. Un rançongiciel peut aussi chiffrer les sauvegardes restées branchées, et c'est souvent ce qui empêche de redémarrer.",
@@ -164,7 +164,7 @@ export const QUESTIONS = [
     id: "S3",
     theme: "sauvegardes",
     weight: 2,
-    text: "Avez-vous déjà vérifié que vous savez restaurer des fichiers depuis une sauvegarde ?",
+    text: "Avez-vous déjà vérifié que vous savez restaurer des fichiers depuis une sauvegarde\u00A0?",
     action: {
       title: "Tester la restauration de vos sauvegardes",
       why: "Essayez de temps en temps de restaurer quelques fichiers. Une sauvegarde jamais testée peut se révéler inutilisable le jour où on en a besoin.",
@@ -177,7 +177,7 @@ export const QUESTIONS = [
     id: "A1",
     theme: "acces",
     weight: 2,
-    text: "Utilisez-vous des mots de passe longs et différents pour chaque service, par exemple grâce à un gestionnaire de mots de passe ?",
+    text: "Utilisez-vous des mots de passe longs et différents pour chaque service, par exemple grâce à un gestionnaire de mots de passe\u00A0?",
     action: {
       title: "Utiliser un mot de passe différent par service",
       why: "Un mot de passe par service, rangé dans un gestionnaire de mots de passe. Si un site se fait pirater, vos autres comptes restent protégés.",
@@ -191,7 +191,7 @@ export const QUESTIONS = [
     id: "A2",
     theme: "acces",
     weight: 3,
-    text: "La double authentification (un code reçu sur le téléphone en plus du mot de passe) est-elle activée sur la messagerie et les services sensibles (banque, logiciel métier en ligne) ?",
+    text: "La double authentification (un code reçu sur le téléphone en plus du mot de passe) est-elle activée sur la messagerie et les services sensibles (banque, logiciel métier en ligne)\u00A0?",
     action: {
       title: "Activer la double authentification",
       why: "Activez-la en commençant par la messagerie. Quelqu'un qui contrôle votre boîte mail peut réinitialiser la plupart de vos autres mots de passe.",
@@ -207,7 +207,7 @@ export const QUESTIONS = [
     id: "M1",
     theme: "majs",
     weight: 3,
-    text: "Les mises à jour s'installent-elles automatiquement, ou sans tarder, sur les ordinateurs, téléphones et logiciels ?",
+    text: "Les mises à jour s'installent-elles automatiquement, ou sans tarder, sur les ordinateurs, téléphones et logiciels\u00A0?",
     action: {
       title: "Activer les mises à jour automatiques",
       why: "Activez les mises à jour automatiques. Elles corrigent des failles que les attaquants connaissent et exploitent.",
@@ -221,7 +221,7 @@ export const QUESTIONS = [
     id: "M2",
     theme: "majs",
     weight: 2,
-    text: "Tous vos appareils utilisent-ils un système encore mis à jour par son éditeur ?",
+    text: "Tous vos appareils utilisent-ils un système encore mis à jour par son éditeur\u00A0?",
     help: "Par exemple, Windows 7 n'est plus mis à jour.",
     action: {
       title: "Remplacer les systèmes qui ne sont plus mis à jour",
@@ -238,7 +238,7 @@ export const QUESTIONS = [
     id: "P1",
     theme: "postes",
     weight: 2,
-    text: "Chaque ordinateur a-t-il un antivirus actif et à jour (celui intégré à Windows compte) ?",
+    text: "Chaque ordinateur a-t-il un antivirus actif et à jour (celui intégré à Windows compte)\u00A0?",
     action: {
       title: "Vérifier l'antivirus de chaque poste",
       why: "Vérifiez que l'antivirus est activé et à jour sur chaque ordinateur.",
@@ -252,7 +252,7 @@ export const QUESTIONS = [
     id: "P2",
     theme: "postes",
     weight: 2,
-    text: "Pour le travail de tous les jours, utilisez-vous un compte sans droits d'administrateur ?",
+    text: "Pour le travail de tous les jours, utilisez-vous un compte sans droits d'administrateur\u00A0?",
     action: {
       title: "Travailler avec un compte sans droits d'administrateur",
       why: "Travaillez au quotidien avec un compte standard et gardez le compte administrateur pour les installations. Un logiciel malveillant ouvert par erreur aura alors beaucoup moins de pouvoir.",
@@ -268,7 +268,7 @@ export const QUESTIONS = [
     id: "E1",
     theme: "messagerie",
     weight: 2,
-    text: "Avant de payer une facture inhabituelle ou de changer un RIB à la demande d'un e-mail, vérifiez-vous par téléphone, avec un numéro que vous connaissiez déjà ?",
+    text: "Avant de payer une facture inhabituelle ou de changer un RIB à la demande d'un e-mail, vérifiez-vous par téléphone, avec un numéro que vous connaissiez déjà\u00A0?",
     action: {
       title: "Vérifier par téléphone toute demande de paiement ou de changement de RIB",
       why: "Confirmez toujours ce type de demande par un autre canal. Les escrocs imitent les fournisseurs et les dirigeants pour obtenir de faux virements.",
@@ -279,7 +279,7 @@ export const QUESTIONS = [
     id: "E2",
     theme: "messagerie",
     weight: 1,
-    text: "Les usages professionnels et personnels sont-ils séparés (adresse mail pro, ordinateur pro non partagé avec la famille) ?",
+    text: "Les usages professionnels et personnels sont-ils séparés (adresse mail pro, ordinateur pro non partagé avec la famille)\u00A0?",
     action: {
       title: "Séparer les usages professionnels et personnels",
       why: "Réservez les outils professionnels au travail. Un jeu ou un mail personnel piégé ne doit pas pouvoir toucher les données de la structure.",
@@ -295,10 +295,10 @@ export const QUESTIONS = [
     id: "W1",
     theme: "reseau",
     weight: 2,
-    text: "Votre Wi-Fi est-il protégé par un mot de passe solide (celui d'origine de la box a été changé), avec un réseau séparé pour les visiteurs ou les patients ?",
+    text: "Votre Wi-Fi est-il protégé par un mot de passe solide (celui d'origine de la box a été changé), avec un réseau séparé pour les visiteurs ou les patients\u00A0?",
     action: {
       title: "Sécuriser le Wi-Fi et créer un réseau invités",
-      why: "Changez les mots de passe d'origine et activez un réseau « invités » séparé. Un visiteur ne doit pas se retrouver sur le même réseau que vos ordinateurs.",
+      why: "Changez les mots de passe d'origine et activez un réseau «\u00A0invités\u00A0» séparé. Un visiteur ne doit pas se retrouver sur le même réseau que vos ordinateurs.",
     },
     sources: [{ ref: "anssiHygiene", detail: "mesures 12 et 20" }],
   },
@@ -306,7 +306,7 @@ export const QUESTIONS = [
     id: "W2",
     theme: "reseau",
     weight: 3,
-    text: "Si des accès à distance existent (télétravail, télémaintenance par un prestataire), sont-ils protégés par un VPN et la double authentification ? Répondez « Oui » si vous n'en avez aucun.",
+    text: "Si des accès à distance existent (télétravail, télémaintenance par un prestataire), sont-ils protégés par un VPN et la double authentification\u00A0? Répondez «\u00A0Oui\u00A0» si vous n'en avez aucun.",
     action: {
       title: "Protéger ou fermer les accès à distance",
       why: "Demandez à votre prestataire de protéger ces accès, ou de les fermer s'ils ne servent pas. Un accès à distance mal protégé est une porte d'entrée directe.",
@@ -319,7 +319,7 @@ export const QUESTIONS = [
     id: "H1",
     theme: "equipe",
     weight: 2,
-    text: "Votre équipe a-t-elle été sensibilisée récemment aux bons réflexes (messages piégés, mots de passe, à qui signaler un doute) ?",
+    text: "Votre équipe a-t-elle été sensibilisée récemment aux bons réflexes (messages piégés, mots de passe, à qui signaler un doute)\u00A0?",
     action: {
       title: "Sensibiliser votre équipe aux bons réflexes",
       why: "Organisez une courte séance avec les ressources gratuites de Cybermalveillance.gouv.fr. Un message piégé repéré à temps évite la plupart des ennuis.",
@@ -335,10 +335,10 @@ export const QUESTIONS = [
     id: "I1",
     theme: "incident",
     weight: 2,
-    text: "En cas d'attaque, savez-vous quoi faire en premier et qui appeler (prestataire, 17Cyber, assureur), et ces informations sont-elles notées quelque part, accessibles même sans ordinateur ?",
+    text: "En cas d'attaque, savez-vous quoi faire en premier et qui appeler (prestataire, 17Cyber, assureur), et ces informations sont-elles notées quelque part, accessibles même sans ordinateur\u00A0?",
     action: {
       title: "Préparer la marche à suivre en cas d'attaque",
-      why: "Imprimez la page « En cas d'attaque » de ce site et rangez-la à portée de main. Les premières minutes comptent : débrancher du réseau, ne pas payer la rançon, appeler de l'aide.",
+      why: "Imprimez la page «\u00A0En cas d'attaque\u00A0» de ce site et rangez-la à portée de main. Les premières minutes comptent\u00A0: débrancher du réseau, ne pas payer la rançon, appeler de l'aide.",
     },
     sources: [
       { ref: "anssiHygiene", detail: "mesure 40" },

@@ -1,86 +1,76 @@
-/* ==========================================================================
-   Garde-Clé : styles d'impression et d'export PDF
-   Chargé uniquement à l'impression (media="print"), en plus de style.css.
-   ========================================================================== */
+/* Impression et export PDF. Chargée uniquement à l'impression (media="print"),
+   en plus de base.css et composants.css. */
 
 @page { margin: 1.5cm; }
 
-/* Toujours des couleurs claires sur papier, même si l'écran est en mode sombre. */
+/* Toujours le thème clair sur papier, même si l'écran est en mode sombre */
 :root {
   --fond: #ffffff;
-  --surface: #ffffff;
-  --texte: #000000;
-  --texte-doux: #333333;
-  --primaire: #0f5c55;
-  --sur-primaire: #ffffff;
-  --primaire-leger: #e2f0ed;
-  --bordure: #bbbbbb;
-  --critique: #a3262a;   --critique-fond: #fbeaea;
-  --ameliorer: #9a4500;  --ameliorer-fond: #fdf0e4;
-  --correct: #5b6300;    --correct-fond: #f2f4dc;
-  --bon: #1d6b3a;        --bon-fond: #e3f3e8;
+  --bandeau: #ffffff;
+  --surface: #f2f4fa;
+  --texte: #18233f;
+  --texte-doux: #4e5870;
+  --accent: #2c47b0;
+  --accent-texte: #ffffff;
+  --trame: #c9d3ef;
+  --filet: #d5dbea;
+  --bordure: #6d7690;
+  --vert: #17663f;
+  --vert-fond: #e9f4ee;
+  --ambre: #8a5300;
+  --ambre-fond: #fdf3e2;
+  --rouge: #b3261e;
+  --rouge-fond: #fcecea;
+  --bleu-fond: #e9edf9;
 }
 
-body {
-  font-size: 11pt;
-  line-height: 1.45;
-  background: #ffffff;
-  color: #000000;
-}
+body { font-size: 11pt; line-height: 1.45; }
 
-/* Ce qui ne sert à rien sur papier. */
-.skip-link,
-.site-header nav,
-.btn,
-.actions-resultats,
-.encart-alerte,
+/* Ce qui ne sert à rien sur papier */
+.lien-evitement,
+.entete-site nav,
+.pied-site nav,
+.bouton,
+.boutons,
+.urgence,
 .no-print {
   display: none !important;
 }
 
-.container { max-width: none; padding: 0; }
-.site-header { border: none; }
-.panel { margin: 0; padding: 0; border: none; }
-.site-footer { margin-top: 1.5rem; font-size: 9pt; }
+.conteneur { max-width: none; padding-inline: 0; }
+.entete-site { border: none; }
+.entete-site__interieur { padding-block: 0 0.5rem; }
+.bandeau { padding-block: 0 0.75rem; }
+.bandeau::after { display: none; }
+.disposition { display: block; padding-block: 0; }
+.pied-site { margin-top: 1.5rem; padding-block: 0; font-size: 9pt; }
+.pied-site__interieur { display: block; }
 
-/* Sur papier, un lien ne se clique pas : on écrit son adresse. */
-.action-sources a::after,
-.imprime-url a::after {
-  content: " (" attr(href) ")";
-  font-size: 8.5pt;
-  word-break: break-all;
-}
-a { color: #000000; }
+h1 { font-size: 22pt; max-width: none; }
+h2 { font-size: 14pt; margin-top: 1.25rem; }
 
-/* Éviter qu'un bloc soit coupé entre deux pages. */
-.action,
-.theme,
-.liste-etapes > li,
-.contact,
-.encart-info,
-.a-completer {
-  break-inside: avoid;
-}
-h1, h2, h3 { break-after: avoid; }
+/* Le tampon est posé, sans animation */
+.tampon { animation: none; }
 
-/* Les navigateurs n'impriment pas les fonds par défaut :
-   on force ceux qui portent une information (niveau, barres, numéros). */
-.niveau-badge,
-.niveau-plafond,
-.theme-piste,
-.theme-barre,
-.action::before,
-.liste-etapes > li::before {
+/* Les navigateurs n'impriment pas les fonds par défaut : on garde ceux qui portent l'information */
+.verdict,
+.tampon {
   -webkit-print-color-adjust: exact;
   print-color-adjust: exact;
 }
 
-.score-nombre { font-size: 32pt; }
+/* Sur papier, un lien ne se clique pas : on écrit son adresse */
+.sources a::after {
+  content: " (" attr(href) ")";
+  font-size: 8.5pt;
+  word-break: break-all;
+}
 
-/* Espacements resserrés : la fiche « En cas d'attaque » tient sur 2 pages. */
-.titre-section { margin-top: 1.1rem; }
-.liste-etapes > li { margin-bottom: 0.6rem; }
-.contact { padding: 0.6rem 0.8rem; }
+/* Éviter qu'un bloc soit coupé entre deux pages */
+li, tr, .verdict, .a-completer { break-inside: avoid; }
+h2, h3 { break-after: avoid; }
+
+/* Fiche « En cas d'attaque » : espacements resserrés pour tenir sur 2 pages */
+.etapes li { margin-bottom: 0.4rem; }
 .a-completer dt { margin-top: 0.6rem; }
 .a-completer dd { min-height: 1.6rem; }
-.site-footer { break-inside: avoid; }

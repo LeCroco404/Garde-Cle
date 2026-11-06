@@ -71,7 +71,8 @@ Toutes les recommandations s'appuient sur des sources officielles françaises :
 ├── en-cas-d-attaque.html   Premiers réflexes et contacts (fonctionne sans JavaScript)
 ├── a-propos.html           Méthode, sources, confidentialité, limites
 ├── css/
-│   ├── style.css           Styles écran (mobile d'abord, mode sombre)
+│   ├── base.css            Police, couleurs, typographie, mise en page, en-tête, pied de page
+│   ├── composants.css      Boutons, réponses, tampon du niveau, listes, tableaux
 │   └── print.css           Mise en page d'impression / PDF
 ├── js/
 │   ├── app.js              Navigation dans le questionnaire
@@ -81,6 +82,7 @@ Toutes les recommandations s'appuient sur des sources officielles françaises :
 │   └── data/questions.js   Contenu : questions, poids, recommandations, sources
 ├── tests/scoring.test.js   Tests du calcul et du contenu
 ├── assets/favicon.svg
+├── polices/                Atkinson Hyperlegible Next, auto-hébergée (licence SIL OFL)
 └── _headers                En-têtes de sécurité HTTP (Netlify)
 ```
 
@@ -136,4 +138,5 @@ l'ANSSI, à Cybermalveillance.gouv.fr ni à la CNIL.
 
 ## Licence
 
-[MIT](LICENSE)
+Code : [MIT](LICENSE). Police Atkinson Hyperlegible Next : SIL Open Font License 1.1
+([polices/OFL.txt](polices/OFL.txt)).

@@ -1,0 +1,279 @@
+/* Composants réutilisés par toutes les pages.
+   Repris de Garde-Mail ; les composants propres à Garde-Clé sont regroupés en fin de fichier. */
+
+.aide { color: var(--texte-doux); font-size: 0.95rem; margin: 0.3rem 0 0.6rem; }
+
+.alerte {
+  background: var(--ambre-fond);
+  color: var(--texte);
+  border: 1px solid var(--ambre);
+  border-radius: var(--rayon);
+  padding: 0.8rem 1rem;
+}
+
+/* ------------------------------------------------------------------ */
+/* Boutons                                                             */
+/* ------------------------------------------------------------------ */
+
+.boutons { display: flex; flex-wrap: wrap; gap: 0.75rem; margin-top: 0.9rem; }
+
+.bouton {
+  display: inline-flex;
+  align-items: center;
+  min-height: 48px;
+  padding: 0.55rem 1.3rem;
+  border: 2px solid var(--accent);
+  border-radius: var(--rayon);
+  font: inherit;
+  font-weight: 700;
+  text-decoration: none;
+  cursor: pointer;
+}
+.bouton--principal { background: var(--accent); color: var(--accent-texte); }
+.bouton--principal:hover { box-shadow: inset 0 0 0 2px var(--accent-texte); }
+.bouton--secondaire { background: transparent; color: var(--accent); }
+.bouton--secondaire:hover { background: var(--bleu-fond); }
+.bouton:disabled { opacity: 0.55; cursor: wait; }
+
+/* ------------------------------------------------------------------ */
+/* Verdict : le tampon                                                 */
+/* ------------------------------------------------------------------ */
+
+.resultat:empty { display: none; }
+.resultat { overflow-x: clip; } /* le tampon agrandi pendant sa pose ne crée pas de défilement horizontal */
+.resultat > h2 { margin-top: 2.25rem; }
+
+.verdict {
+  display: grid;
+  gap: 0.75rem 1.75rem;
+  align-items: center;
+  padding: 1.5rem clamp(1rem, 3vw, 1.75rem);
+  border-radius: var(--rayon);
+  color: var(--texte);
+  --encre: var(--accent);
+  background: var(--bleu-fond);
+}
+@media (min-width: 40rem) {
+  .verdict { grid-template-columns: auto minmax(0, 1fr); }
+}
+.verdict > div p { margin: 0 0 0.6rem; }
+.verdict > div p:last-child { margin-bottom: 0; }
+
+/* Le tampon encré : double filet, légèrement penché, posé une seule fois */
+.tampon {
+  justify-self: start;
+  margin: 0.35rem 0.5rem 0.35rem 0.25rem;
+  padding: 0.45rem 0.9rem;
+  border: 3px solid var(--encre);
+  outline: 1.5px solid var(--encre);
+  outline-offset: 3px;
+  border-radius: 6px;
+  color: var(--encre);
+  font-weight: 800;
+  font-size: clamp(1.2rem, 2.6vw, 1.55rem);
+  line-height: 1.1;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  transform: rotate(-4deg);
+  animation: apposer 260ms cubic-bezier(0.2, 0.9, 0.3, 1.2) both;
+}
+@keyframes apposer {
+  from { transform: rotate(-12deg) scale(1.5); opacity: 0; }
+  to { transform: rotate(-4deg) scale(1); opacity: 1; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .tampon { animation: none; }
+}
+/* Très petits écrans (320 px) : le tampon peut passer sur deux lignes */
+@media (max-width: 24rem) {
+  .tampon { white-space: normal; max-width: calc(100% - 2rem); font-size: 1.15rem; } /* marge pour la rotation */
+}
+
+/* Encre du tampon selon le niveau de maturité */
+.verdict--bon { --encre: var(--vert); background: var(--vert-fond); }
+.verdict--correct { --encre: var(--accent); background: var(--bleu-fond); }
+.verdict--ameliorer { --encre: var(--ambre); background: var(--ambre-fond); }
+.verdict--critique { --encre: var(--rouge); background: var(--rouge-fond); }
+
+.verdict__raison { color: var(--texte-doux); }
+
+.score { display: flex; flex-wrap: wrap; align-items: center; gap: 0.4rem 1rem; font-weight: 700; }
+.score meter { width: 14rem; max-width: 100%; height: 1rem; }
+
+/* ------------------------------------------------------------------ */
+/* Listes de résultats                                                 */
+/* ------------------------------------------------------------------ */
+
+.liste-signaux { list-style: none; margin: 0; padding: 0; }
+.liste-signaux li {
+  max-width: none;
+  padding: 0.75rem 0;
+  border-bottom: 1px solid var(--filet);
+}
+.liste-signaux li:first-child { border-top: 1px solid var(--filet); }
+
+/* Signal : colonne fixe pour le libellé, texte à côté */
+.signal { display: grid; grid-template-columns: 6.5rem minmax(0, 1fr); gap: 0.25rem 1rem; align-items: baseline; }
+@media (max-width: 30rem) {
+  .signal { grid-template-columns: 1fr; }
+}
+
+.badge { font-weight: 800; font-size: 0.95rem; font-variant-numeric: tabular-nums; white-space: nowrap; }
+.badge--info { color: var(--accent); }
+.badge--attention { color: var(--ambre); }
+.badge--grave { color: var(--rouge); }
+.badge--ok { color: var(--vert); }
+
+.preuves { color: var(--texte-doux); }
+
+.rappel { margin-top: 2rem; color: var(--texte-doux); font-size: 0.95rem; }
+
+/* ------------------------------------------------------------------ */
+/* Contenus éditoriaux                                                  */
+/* ------------------------------------------------------------------ */
+
+.etapes { padding-left: 1.4rem; }
+.etapes li { margin-bottom: 0.65rem; padding-left: 0.25rem; }
+.etapes li::marker { font-weight: 800; color: var(--accent); }
+
+.sources { color: var(--texte-doux); font-size: 0.95rem; }
+
+/* ------------------------------------------------------------------ */
+/* Accueil                                                             */
+/* ------------------------------------------------------------------ */
+
+.modules { display: grid; gap: 0; margin-top: 2.5rem; }
+@media (min-width: 56rem) {
+  .modules { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .module + .module { border-left: 1px solid var(--filet); padding-left: 2rem; }
+  .module { padding-right: 2rem; }
+}
+.module { padding-block: 1.25rem; border-top: 1px solid var(--filet); }
+@media (min-width: 56rem) { .module { border-top: none; } }
+.module h2 { margin: 0 0 0.6rem; font-size: 1.45rem; }
+.module h2 a { color: var(--texte); text-decoration: none; }
+.module h2 a:hover { color: var(--accent); text-decoration: underline; }
+.module p { margin: 0 0 0.75rem; }
+.module .a-coller { color: var(--texte-doux); font-size: 0.98rem; }
+
+.urgence {
+  margin-top: 2.5rem;
+  padding: clamp(1.25rem, 3vw, 2rem);
+  background: var(--rouge-fond);
+  border-radius: var(--rayon);
+  display: grid;
+  gap: 0.5rem 2rem;
+  align-items: center;
+}
+@media (min-width: 48rem) { .urgence { grid-template-columns: minmax(0, 1fr) auto; } }
+.urgence h2 { margin: 0 0 0.35rem; }
+.urgence p { margin: 0; }
+
+.deux-colonnes { display: grid; gap: 0 clamp(2rem, 5vw, 4.5rem); }
+@media (min-width: 56rem) { .deux-colonnes { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+
+/* ------------------------------------------------------------------ */
+/* Tableaux                                                            */
+/* ------------------------------------------------------------------ */
+
+section[id] { scroll-margin-top: 1rem; }
+
+table { border-collapse: collapse; width: 100%; margin: 1rem 0; font-size: 1rem; }
+th, td { text-align: left; vertical-align: top; padding: 0.7rem 1rem 0.7rem 0; border-bottom: 1px solid var(--filet); }
+th { font-weight: 800; border-bottom: 2px solid var(--texte); }
+.tableau-defilant { overflow-x: auto; }
+
+/* En-têtes de ligne : seul l'en-tête de colonne porte le trait épais */
+tbody th { font-weight: 700; border-bottom: 1px solid var(--filet); }
+td.nombre { font-variant-numeric: tabular-nums; white-space: nowrap; }
+td .badge { white-space: normal; } /* « À améliorer » peut passer à la ligne : le tableau tient à 320 px */
+@media (max-width: 24rem) { table { font-size: 0.95rem; } th, td { padding-right: 0.6rem; } }
+
+/* ================================================================== */
+/* Composants propres à Garde-Clé                                      */
+/* ================================================================== */
+
+/* ---------- Questionnaire ---------- */
+
+.progression { margin-top: 1.75rem; max-width: 46rem; }
+.progression p {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 0.25rem 1rem;
+  max-width: none;
+  margin: 0 0 0.4rem;
+  color: var(--texte-doux);
+  font-size: 1rem;
+}
+.progression__theme { font-weight: 700; color: var(--texte); }
+
+/* Barre de progression native, aux couleurs du site */
+.progression progress {
+  display: block;
+  width: 100%;
+  height: 0.5rem;
+  appearance: none;
+  border: none;
+  border-radius: var(--rayon);
+  background: var(--filet);
+  overflow: hidden;
+}
+.progression progress::-webkit-progress-bar { background: var(--filet); }
+.progression progress::-webkit-progress-value { background: var(--accent); }
+.progression progress::-moz-progress-bar { background: var(--accent); }
+
+.question { margin: 1.5rem 0 0; padding: 0; border: 0; min-width: 0; max-width: 46rem; }
+.question legend { padding: 0; }
+.question h2 { margin: 0 0 0.5rem; }
+
+/* Réponses : boutons radio natifs (flèches du clavier), label entier cliquable */
+.reponses { display: grid; gap: 0.6rem; margin-top: 1.25rem; }
+@media (min-width: 40rem) {
+  .reponses { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+.reponse {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  min-height: 48px;
+  padding: 0.55rem 1rem;
+  border: 1.5px solid var(--bordure);
+  border-radius: var(--rayon);
+  background: var(--fond);
+  font-weight: 700;
+  cursor: pointer;
+}
+.reponse:hover { border-color: var(--accent); }
+.reponse input { width: 1.2rem; height: 1.2rem; margin: 0; flex: none; accent-color: var(--accent); }
+/* Réponse choisie : bordure doublée et fond bleu. Le bouton radio coché reste visible. */
+.reponse:has(input:checked) { border-color: var(--accent); box-shadow: inset 0 0 0 1.5px var(--accent); background: var(--bleu-fond); }
+/* Le focus clavier s'affiche sur toute la réponse */
+.reponse:has(input:focus-visible) { outline: 3px solid var(--accent); outline-offset: 3px; }
+.reponse input:focus-visible { outline: none; }
+
+.erreur { margin: 1rem 0 0; color: var(--rouge); font-weight: 700; }
+
+/* ---------- Actions prioritaires ---------- */
+
+.liste-actions { counter-reset: action; }
+.liste-actions > li { counter-increment: action; }
+.liste-actions .signal { grid-template-columns: 8rem minmax(0, 1fr); }
+@media (max-width: 30rem) {
+  .liste-actions .signal { grid-template-columns: 1fr; }
+}
+.liste-actions .badge { margin: 0; white-space: normal; }
+.liste-actions p { margin: 0 0 0.5rem; }
+.liste-actions p:last-child { margin-bottom: 0; }
+.action-titre { margin: 0 0 0.35rem; }
+.action-titre::before { content: counter(action) ". "; color: var(--accent); }
+
+/* ---------- Fiche « En cas d'attaque » : lignes à compléter à la main ---------- */
+
+.a-completer { margin: 0; }
+.a-completer dt { font-weight: 700; margin-top: 1rem; }
+.a-completer dd { margin: 0; min-height: 2.25rem; border-bottom: 1px dashed var(--bordure); }
+
+/* ---------- Résultats : le verdict s'aligne sur le premier titre de la colonne d'aide ---------- */
+.disposition .resultat:first-child { margin-top: 1.75rem; }

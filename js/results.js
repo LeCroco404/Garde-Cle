@@ -9,9 +9,13 @@ import { levelFor } from "./scoring.js";
 
 const answerLabel = Object.fromEntries(ANSWER_OPTIONS.map((o) => [o.id, o.label]));
 
+// Couleur du libellé selon le niveau. Le niveau reste toujours écrit en
+// toutes lettres : la couleur n'est qu'un repère en plus.
+const BADGE_BY_LEVEL = { critique: "grave", ameliorer: "attention", correct: "info", bon: "ok" };
+
 /**
  * Petite fonction utilitaire pour créer un élément :
- *   h("p", { class: "note", text: "Bonjour" })
+ *   h("p", { class: "aide", text: "Bonjour" })
  * Les enfants de type chaîne deviennent des nœuds texte (jamais du HTML),
  * ce qui évite toute injection de code.
  */
@@ -26,12 +30,14 @@ function h(tag, props = {}, ...children) {
   return node;
 }
 
+// Texte lu uniquement par les lecteurs d'écran
+const srOnly = (text) => h("span", { class: "sr-only", text });
+
 /**
  * Lien vers une source officielle. Il s'ouvre dans un nouvel onglet pour
  * ne pas quitter la page : les résultats, gardés en mémoire seulement,
- * seraient perdus. Le texte masqué prévient les lecteurs d'écran.
- * rel="noopener noreferrer" : le site ouvert ne peut ni contrôler cet onglet
- * ni savoir d'où vient le visiteur.
+ * seraient perdus. rel="noopener noreferrer" : le site ouvert ne peut ni
+ * contrôler cet onglet ni savoir d'où vient le visiteur.
  */
 function sourceLink({ ref, detail }) {
   const source = SOURCES[ref];
@@ -40,92 +46,91 @@ function sourceLink({ ref, detail }) {
     "a",
     { href: source.url, target: "_blank", rel: "noopener noreferrer" },
     label,
-    h("span", { class: "visually-hidden", text: " (s'ouvre dans un nouvel onglet)" })
+    srOnly(" (s'ouvre dans un nouvel onglet)")
   );
 }
 
-/* ---------- 1. Score global et niveau ---------- */
-function renderScore(results) {
-  const { score, level, capped } = results;
-
-  const date = new Date().toLocaleDateString("fr-FR", {
-    day: "numeric",
-    month: "long",
-    year: "numeric",
-  });
-
-  return [
-    h(
-      "p",
-      { class: "score-valeur" },
-      h("span", { class: "score-nombre", text: String(score) }),
-      h("span", { class: "score-sur", text: " / 100" })
-    ),
-    // Le niveau est écrit en toutes lettres : la couleur n'est qu'un repère en plus.
-    h("p", { class: `niveau-badge niveau-${level.id}`, text: `Niveau : ${level.label}` }),
-    h("p", { class: "niveau-message", text: level.message }),
-    capped &&
-      h("p", {
-        class: "niveau-plafond",
-        text:
-          "Votre score seul correspondrait à un niveau plus élevé, mais au moins une protection " +
-          "essentielle manque ou n'est pas connue. Tant qu'elle n'est pas en place, le niveau " +
-          "reste limité à « À améliorer ».",
-      }),
-    h("p", { class: "note", text: `Diagnostic réalisé le ${date}.` }),
-  ];
-}
-
-/* ---------- 2. Actions prioritaires ---------- */
-function renderPriority({ question, answerId }) {
+/* ---------- 1. Verdict : le tampon du niveau ---------- */
+function renderVerdict({ score, level, capped }) {
   return h(
-    "li",
-    { class: "action" },
-    h("h3", { class: "action-titre", text: question.action.title }),
-    h("p", { class: "action-reponse", text: `Votre réponse : ${answerLabel[answerId]}` }),
-    h("p", { text: question.action.why }),
-    answerId === "nsp" && h("p", { class: "action-nsp", text: UNKNOWN_MESSAGE }),
+    "div",
+    { class: `verdict verdict--${level.id}` },
+    // Le tampon : niveau en capitales (par CSS), posé une seule fois
+    h("p", { class: "tampon" }, srOnly("Niveau\u00A0: "), level.label),
     h(
-      "p",
-      { class: "action-sources" },
-      question.sources.length > 1 ? "Sources : " : "Source : ",
-      ...question.sources.flatMap((s, i) => (i === 0 ? [sourceLink(s)] : [" · ", sourceLink(s)]))
+      "div",
+      {},
+      h(
+        "p",
+        { class: "score" },
+        h("span", { text: `Score\u00A0: ${score} / 100` }),
+        // Jauge visuelle ; le score est déjà écrit à côté, on la masque aux lecteurs d'écran
+        h("meter", { min: "0", max: "100", low: "40", high: "80", optimum: "100", value: String(score), "aria-hidden": "true" })
+      ),
+      h("p", { text: level.message }),
+      capped &&
+        h("p", {
+          class: "verdict__raison",
+          text:
+            "Votre score seul correspondrait à un niveau plus élevé, mais au moins une protection " +
+            "essentielle manque ou n'est pas connue. Tant qu'elle n'est pas en place, le niveau " +
+            "reste limité à «\u00A0À améliorer\u00A0».",
+        })
     )
   );
 }
 
-/* ---------- 3. Score par thème ---------- */
-function renderTheme({ label, score }) {
-  const level = levelFor(score);
-  const barre = h("span", { class: `theme-barre niveau-${level.id}`, "aria-hidden": "true" });
-  // Largeur passée par une variable CSS. Modifier node.style via JavaScript
-  // reste autorisé par notre CSP, contrairement à un attribut style="" écrit en dur.
-  barre.style.setProperty("--valeur", `${score}%`);
-
+/* ---------- 2. Actions prioritaires ----------
+   Liste à deux colonnes : la réponse donnée à gauche, l'action à droite.
+   Le numéro est ajouté devant le titre par CSS (compteur). */
+function renderPriority({ question, answerId }) {
+  const gravite = answerId === "partiel" ? "attention" : "grave";
   return h(
     "li",
-    { class: "theme" },
+    { class: "signal" },
+    h("p", { class: `badge badge--${gravite}` }, srOnly("Votre réponse\u00A0: "), answerLabel[answerId]),
     h(
-      "span",
-      { class: "theme-ligne" },
-      h("span", { class: "theme-nom", text: label }),
-      h("span", { class: "theme-score", text: `${score} / 100` })
-    ),
-    h("span", { class: "theme-piste", "aria-hidden": "true" }, barre)
+      "div",
+      {},
+      h("h3", { class: "action-titre", text: question.action.title }),
+      h("p", { text: question.action.why }),
+      answerId === "nsp" && h("p", { class: "aide", text: UNKNOWN_MESSAGE }),
+      h(
+        "p",
+        { class: "sources" },
+        question.sources.length > 1 ? "Sources\u00A0: " : "Source\u00A0: ",
+        ...question.sources.flatMap((s, i) => (i === 0 ? [sourceLink(s)] : [" · ", sourceLink(s)]))
+      )
+    )
+  );
+}
+
+/* ---------- 3. Score par thème : une ligne de tableau ---------- */
+function renderTheme({ label, score }) {
+  const level = levelFor(score);
+  return h(
+    "tr",
+    {},
+    h("th", { scope: "row", text: label }),
+    h("td", { class: "nombre", text: `${score} / 100` }),
+    h("td", {}, h("span", { class: `badge badge--${BADGE_BY_LEVEL[level.id]}`, text: level.label }))
   );
 }
 
 /* ---------- 4. Point d'entrée ---------- */
 /** Remplit la section #resultats à partir des résultats calculés. */
 export function renderResults(results) {
-  document.getElementById("score-global").replaceChildren(...renderScore(results).filter(Boolean));
+  const date = new Date().toLocaleDateString("fr-FR", { day: "numeric", month: "long", year: "numeric" });
+  document.getElementById("resultats-date").textContent =
+    `Diagnostic réalisé le ${date}, sur 15 points essentiels de sécurité.`;
+
+  document.getElementById("score-global").replaceChildren(renderVerdict(results));
 
   const list = document.getElementById("actions-prioritaires");
   if (results.priorities.length === 0) {
     list.replaceChildren(
       h("li", {
-        class: "action action-vide",
-        text: "Aucune action prioritaire : toutes les protections évaluées sont en place. Bravo, continuez ainsi.",
+        text: "Aucune action prioritaire\u00A0: toutes les protections évaluées sont en place. Bravo, continuez ainsi.",
       })
     );
   } else {

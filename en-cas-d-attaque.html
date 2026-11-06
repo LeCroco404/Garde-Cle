@@ -7,29 +7,31 @@
         content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; connect-src 'none'; form-action 'none'; base-uri 'none'; object-src 'none'">
   <meta name="referrer" content="no-referrer">
   <title>En cas d'attaque · Garde-Clé</title>
-  <meta name="description" content="Les premiers réflexes en cas de cyberattaque et les contacts utiles : 17Cyber, dépôt de plainte, CNIL. Pour les cabinets, associations et petites entreprises.">
-  <meta name="theme-color" content="#0f5c55">
+  <meta name="description" content="Les premiers réflexes en cas de cyberattaque et les contacts utiles&nbsp;: 17Cyber, dépôt de plainte, CNIL. Pour les cabinets, associations et petites entreprises.">
+  <meta name="theme-color" content="#2c47b0">
   <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
-  <link rel="stylesheet" href="css/style.css">
+  <link rel="preload" href="polices/atkinson-hyperlegible-next-latin-800-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/composants.css">
   <link rel="stylesheet" href="css/print.css" media="print">
   <!-- Seul script de la page : le bouton d'impression. Tout le contenu
        reste lisible même si JavaScript est désactivé. -->
   <script type="module" src="js/print.js"></script>
 </head>
 <body>
-  <a class="skip-link" href="#contenu">Aller au contenu</a>
+  <a class="lien-evitement" href="#contenu">Aller au contenu</a>
 
-  <header class="site-header">
-    <div class="container header-inner">
-      <a class="brand" href="index.html">
-        <svg class="brand-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+  <header class="entete-site">
+    <div class="conteneur entete-site__interieur">
+      <a class="marque" href="index.html">
+        <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
           <circle cx="8" cy="12" r="4"/>
           <path d="M12 12h9M18 12v3M21 12v3"/>
         </svg>
-        <span>Garde-Clé</span>
+        Garde-Clé
       </a>
       <nav aria-label="Navigation principale">
-        <ul class="nav-list">
+        <ul>
           <li><a href="index.html">Diagnostic</a></li>
           <li><a href="en-cas-d-attaque.html" aria-current="page">En cas d'attaque</a></li>
           <li><a href="a-propos.html">À propos</a></li>
@@ -38,119 +40,121 @@
     </div>
   </header>
 
-  <main id="contenu" class="container" tabindex="-1">
-    <article class="panel">
-      <h1>En cas d'attaque : les premiers réflexes</h1>
-      <p class="lead">
-        Gardez votre calme : ces gestes simples limitent les dégâts. Ils s'appliquent
-        en particulier à un rançongiciel, quand vos fichiers deviennent illisibles
-        et qu'une rançon vous est demandée.
-      </p>
-      <p class="note">
-        Conseil : imprimez cette page dès aujourd'hui et rangez-la à portée de main.
-        Pendant une attaque, vos ordinateurs peuvent être inutilisables.
-      </p>
-      <button type="button" class="btn btn-secondaire" data-imprimer>Imprimer cette page</button>
-
-      <!-- ========== 1. Premiers gestes ========== -->
-      <h2 class="titre-section">1. Les premiers gestes</h2>
-      <ol class="liste-etapes">
-        <li>
-          <strong>Coupez la connexion à Internet</strong>, par exemple en éteignant la box,
-          et débranchez du réseau les appareils touchés (câble retiré, Wi-Fi coupé).
-        </li>
-        <li>
-          <strong>Débranchez les sauvegardes</strong> reliées au réseau, pour qu'elles ne
-          soient pas chiffrées à leur tour.
-        </li>
-        <li>
-          <strong>N'éteignez pas les appareils touchés</strong> : des traces utiles à l'enquête
-          peuvent se trouver dans leur mémoire. Et n'allumez pas ceux qui étaient éteints
-          et ont été épargnés.
-        </li>
-        <li>
-          <strong>Ne payez pas la rançon.</strong> Payer ne garantit pas de récupérer vos
-          données et encourage de nouvelles attaques.
-        </li>
-        <li>
-          <strong>Gardez les preuves</strong> : message de rançon, quelques fichiers
-          chiffrés, journaux. Ne réinstallez rien avant d'avoir porté plainte.
-        </li>
-      </ol>
-      <p class="note imprime-url">
-        Source : <a href="https://www.cybermalveillance.gouv.fr/tous-nos-contenus/fiches-reflexes/rancongiciels-ransomwares">Cybermalveillance.gouv.fr, fiche rançongiciel</a>
-      </p>
-
-      <!-- ========== 2. Contacts ========== -->
-      <h2 class="titre-section">2. Qui contacter</h2>
-
-      <div class="contact">
-        <h3>Votre prestataire informatique</h3>
-        <p>Prévenez-le immédiatement : il connaît votre installation et peut agir vite.</p>
+  <main id="contenu" tabindex="-1">
+    <div class="bandeau">
+      <div class="conteneur">
+        <h1>En cas d'attaque&nbsp;: les premiers réflexes</h1>
+        <p class="chapeau">
+          Gardez votre calme&nbsp;: ces gestes simples limitent les dégâts. Ils valent en particulier
+          face à un rançongiciel, quand vos fichiers deviennent illisibles et qu'une rançon vous
+          est demandée.
+        </p>
+        <div class="boutons">
+          <button type="button" class="bouton bouton--principal" data-imprimer>Imprimer cette fiche</button>
+        </div>
+        <p class="confidentialite-courte">Imprimez-la dès aujourd'hui&nbsp;: pendant une attaque, vos ordinateurs peuvent être inutilisables.</p>
       </div>
+    </div>
 
-      <div class="contact imprime-url">
+    <div class="conteneur disposition">
+      <div>
+        <h2>Les premiers gestes</h2>
+        <ol class="etapes">
+          <li>
+            <strong>Coupez la connexion à Internet</strong>, par exemple en éteignant la box,
+            et débranchez du réseau les appareils touchés (câble retiré, Wi-Fi coupé).
+          </li>
+          <li>
+            <strong>Débranchez les sauvegardes</strong> reliées au réseau, pour qu'elles ne
+            soient pas chiffrées à leur tour.
+          </li>
+          <li>
+            <strong>N'éteignez pas les appareils touchés</strong>&nbsp;: des traces utiles à l'enquête
+            peuvent se trouver dans leur mémoire. Et n'allumez pas ceux qui étaient éteints et
+            ont été épargnés.
+          </li>
+          <li>
+            <strong>Ne payez pas la rançon.</strong> Payer ne garantit pas de récupérer vos
+            données et encourage de nouvelles attaques.
+          </li>
+          <li>
+            <strong>Gardez les preuves</strong>&nbsp;: message de rançon, quelques fichiers chiffrés,
+            journaux. Ne réinstallez rien avant d'avoir porté plainte.
+          </li>
+        </ol>
+        <p class="sources">
+          Source&nbsp;: <a href="https://www.cybermalveillance.gouv.fr/tous-nos-contenus/fiches-reflexes/rancongiciels-ransomwares">Cybermalveillance.gouv.fr, fiche rançongiciel</a>
+        </p>
+
+        <h2>Qui contacter</h2>
+        <h3>Votre prestataire informatique</h3>
+        <p>Prévenez-le immédiatement&nbsp;: il connaît votre installation et peut agir vite.</p>
+
         <h3>17Cyber</h3>
         <p>
-          Le service public d'assistance en ligne aux victimes de cybermalveillance, mis en
-          place avec la police, la gendarmerie et Cybermalveillance.gouv.fr. Il pose un
-          diagnostic, donne des conseils adaptés et peut vous orienter vers un prestataire
-          ou un enquêteur : <a href="https://www.17cyber.gouv.fr/">17cyber.gouv.fr</a>
+          Le service public d'assistance en ligne aux victimes de cybermalveillance, mis en place
+          avec la police, la gendarmerie et Cybermalveillance.gouv.fr. Il pose un diagnostic,
+          donne des conseils adaptés et peut vous orienter vers un prestataire ou un enquêteur.
         </p>
-      </div>
+        <p class="sources"><a href="https://www.17cyber.gouv.fr/">17cyber.gouv.fr</a></p>
 
-      <div class="contact">
         <h3>Votre assureur</h3>
         <p>
-          Si vous avez une assurance contre les risques cyber, prévenez-la. Pour être
-          indemnisé, la plainte doit être déposée dans les 72 heures après la découverte
-          de l'attaque.
+          Si vous avez une assurance contre les risques cyber, prévenez-la. Pour être indemnisé,
+          la plainte doit être déposée dans les 72 heures après la découverte de l'attaque.
+        </p>
+
+        <h2>Porter plainte</h2>
+        <p>
+          Déposez plainte au commissariat ou à la gendarmerie, ou écrivez au procureur de la
+          République du tribunal judiciaire dont vous dépendez. Faites-le en parallèle de la remise
+          en route, <strong>avant de réinstaller les appareils touchés</strong>, pour préserver
+          les preuves.
+        </p>
+        <p class="sources">
+          Source&nbsp;: <a href="https://www.cybermalveillance.gouv.fr/tous-nos-contenus/fiches-reflexes/rancongiciels-ransomwares">Cybermalveillance.gouv.fr, fiche rançongiciel</a>
+        </p>
+
+        <h2>Si des données personnelles sont touchées</h2>
+        <p>
+          Si des données personnelles ont pu être consultées, modifiées ou détruites (dossiers
+          patients, fichiers d'adhérents, données de clients), votre structure, responsable de ces
+          données, doit en principe le signaler à la CNIL, si possible dans les 72 heures après la
+          découverte. Si ce délai est dépassé, il faudra expliquer pourquoi.
+        </p>
+        <p class="sources">
+          Notification en ligne&nbsp;: <a href="https://notifications.cnil.fr/notifications/">notifications.cnil.fr</a><br>
+          Source&nbsp;: <a href="https://www.cnil.fr/fr/notifier-une-violation-de-donnees-personnelles">CNIL, Notifier une violation de données personnelles</a>
         </p>
       </div>
 
-      <!-- ========== 3. Plainte ========== -->
-      <h2 class="titre-section">3. Porter plainte</h2>
-      <p>
-        Déposez plainte au commissariat ou à la gendarmerie, ou écrivez au procureur de la
-        République du tribunal judiciaire dont vous dépendez. Faites-le en parallèle de la
-        remise en route, <strong>avant de réinstaller les appareils touchés</strong>, pour
-        préserver les preuves.
-      </p>
-      <p class="note imprime-url">
-        Source : <a href="https://www.cybermalveillance.gouv.fr/tous-nos-contenus/fiches-reflexes/rancongiciels-ransomwares">Cybermalveillance.gouv.fr, fiche rançongiciel</a>
-      </p>
-
-      <!-- ========== 4. CNIL ========== -->
-      <h2 class="titre-section">4. Si des données personnelles sont touchées</h2>
-      <p>
-        Si des données personnelles ont pu être consultées, modifiées ou détruites (dossiers
-        patients, fichiers d'adhérents, données de clients), votre structure, responsable de
-        ces données, doit en principe le signaler à la CNIL, si possible dans les 72 heures
-        après la découverte. Si ce délai est dépassé, il faudra expliquer pourquoi.
-      </p>
-      <p class="imprime-url">
-        Notification en ligne : <a href="https://notifications.cnil.fr/notifications/">notifications.cnil.fr</a>
-      </p>
-      <p class="note imprime-url">
-        Source : <a href="https://www.cnil.fr/fr/notifier-une-violation-de-donnees-personnelles">CNIL, Notifier une violation de données personnelles</a>
-      </p>
-
-      <!-- ========== 5. À remplir ========== -->
-      <h2 class="titre-section">5. Vos contacts, à noter dès maintenant</h2>
-      <p>Une fois la page imprimée, complétez ces lignes à la main.</p>
-      <dl class="a-completer">
-        <dt>Prestataire informatique</dt><dd></dd>
-        <dt>Téléphone du prestataire</dt><dd></dd>
-        <dt>Assureur et n° de contrat</dt><dd></dd>
-        <dt>Personne qui prévient la CNIL si besoin</dt><dd></dd>
-      </dl>
-    </article>
+      <div class="colonne-aide">
+        <h2>Vos contacts, à noter dès maintenant</h2>
+        <p>Une fois la fiche imprimée, complétez ces lignes à la main.</p>
+        <dl class="a-completer">
+          <dt>Prestataire informatique</dt><dd></dd>
+          <dt>Téléphone du prestataire</dt><dd></dd>
+          <dt>Assureur et n° de contrat</dt><dd></dd>
+          <dt>Personne qui prévient la CNIL si besoin</dt><dd></dd>
+        </dl>
+      </div>
+    </div>
   </main>
 
-  <footer class="site-footer">
-    <div class="container">
-      <p>Garde-Clé ne collecte aucune donnée : tout le calcul se fait dans votre navigateur.</p>
-      <p>Outil indépendant, non affilié aux organismes cités. Il ne remplace pas l'accompagnement d'un professionnel.</p>
+  <footer class="pied-site">
+    <div class="conteneur pied-site__interieur">
+      <div>
+        <p>Garde-Clé ne collecte aucune donnée&nbsp;: tout le calcul se fait dans votre navigateur.</p>
+        <p>Outil indépendant, non affilié aux organismes cités. Il ne remplace pas l'accompagnement d'un professionnel.</p>
+      </div>
+      <nav aria-label="Pied de page">
+        <ul>
+          <li><a href="index.html">Diagnostic</a></li>
+          <li><a href="en-cas-d-attaque.html">En cas d'attaque</a></li>
+          <li><a href="a-propos.html">À propos</a></li>
+          <li><a href="https://github.com/LeCroco404/Garde-Cle">Code source</a></li>
+        </ul>
+      </nav>
     </div>
   </footer>
 </body>
